@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="neo4j_user_provider" class="Frne\Bundle\Neo4jUserBundle\Security\User\Neo4jUserProvider">
+            <argument type="service" id="neo4j.repository.user" />
+        </service>
+
+        <service id="neo4j.user_manager" class="Frne\Bundle\Neo4jUserBundle\Model\Neo4jUserManager">
+            <argument type="service" id="security.encoder_factory" />
+        </service>
+
+        <service id="neo4j.repository.user"
+                 class="HireVoice\Neo4j\Repository"
+                 factory-service="neo4j.manager"
+                 factory-method="getRepository">
+            <argument>Frne\Bundle\Neo4jUserBundle\Entity\User</argument>
+        </service>
+
+
+    </services>
+
+</container>
