@@ -1,0 +1,11 @@
+imports:
+    - php
+
+tools:
+    php_analyzer: true
+    php_sim: true
+    external_code_coverage: true
+    sensiolabs_security_checker: true
+    php_loc:
+        enabled: true
+        excluded_dirs: [vendor, tests]
