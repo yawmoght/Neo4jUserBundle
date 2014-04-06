@@ -67,7 +67,7 @@ class Neo4jUserProviderTest extends \PHPUnit_Framework_TestCase
         $returnedUser->setRoles(array('NO_ROLE'));
 
         $refreshedUser = $this->userProvider->refreshUser($loadedUser);
-        $this->assertEquals(['NO_ROLE'], $refreshedUser->getRoles());
+        $this->assertEquals(array('NO_ROLE'), $refreshedUser->getRoles());
     }
 }
  
