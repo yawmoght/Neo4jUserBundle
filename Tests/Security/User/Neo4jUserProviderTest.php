@@ -5,15 +5,10 @@ namespace Frne\Bundle\Neo4jUserBundle\Security\User;
 use Frne\Bundle\Neo4jUserBundle\Entity\User;
 use Liip\FunctionalTestBundle\Test\WebTestCase;
 
-class Neo4jUserProviderTest extends WebTestCase
+class Neo4jUserProviderTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var \HireVoice\Neo4j\EntityManager
-     */
-    private $em;
-
-    /**
-     * @var \HireVoice\Neo4j\Repository
+     * @var \HireVoice\Neo4j\Repository|PHPUnit_Framework_MockObject_MockObject
      */
     private $repo;
 
@@ -24,16 +19,21 @@ class Neo4jUserProviderTest extends WebTestCase
 
     public function setUp()
     {
-        $this->em = $this->getContainer()->get('neo4j.manager');
-        $this->repo = $this->getContainer()->get('neo4j.repository.user');
-        $this->userProvider = $this->getContainer()->get('neo4j_user_provider');
+        $this->repo = $this->getMockBuilder('HireVoice\Neo4j\Repository')
+            ->disableOriginalConstructor()
+            ->disableArgumentCloning()
+            ->getMock();
+
+        $this->userProvider = new Neo4jUserProvider($this->repo);
     }
 
     public function testLoadUserByUsername()
     {
-        $user = new User('johndoe', '1234', 'sfo7sdgfos9d7gfos9dfg', ['ROLE_USER', 'ROLE_ADMIN']);
-        $this->em->persist($user);
-        $this->em->flush();
+        $this->repo
+            ->expects($this->once())
+            ->method('findOneBy')
+            ->with(array('username' => 'johndoe'))
+            ->will($this->returnValue(new User('johndoe')));
 
         $loadedUser = $this->userProvider->loadUserByUsername('johndoe');
 
@@ -52,31 +52,22 @@ class Neo4jUserProviderTest extends WebTestCase
         $this->assertFalse($this->userProvider->supportsClass('Symfony\Component\Security\Core\User\User'));
     }
 
-    public function testReloadUser() {
-        $user = new User('johndoe', '1234', 'sfo7sdgfos9d7gfos9dfg', ['ROLE_USER', 'ROLE_ADMIN']);
-        $this->em->persist($user);
-        $this->em->flush();
+    public function testReloadUser()
+    {
+        $returnedUser = new User('johndoe', '1234', 'spdo8fgspd9f8gs', array('ROLE_USER', 'ROLE_ADMIN'));
+        $this->repo
+            ->expects($this->any())
+            ->method('findOneBy')
+            ->with(array('username' => 'johndoe'))
+            ->will($this->returnValue($returnedUser));
 
         $loadedUser = $this->userProvider->loadUserByUsername('johndoe');
-        $this->assertEquals(['ROLE_USER', 'ROLE_ADMIN'], $loadedUser->getRoles());
+        $this->assertEquals(array('ROLE_USER', 'ROLE_ADMIN'), $loadedUser->getRoles());
 
-        $user->setRoles(['NO_ROLE']);
-        $this->em->persist($user);
-        $this->em->flush();
-        $this->em->clear();
+        $returnedUser->setRoles(array('NO_ROLE'));
 
         $refreshedUser = $this->userProvider->refreshUser($loadedUser);
         $this->assertEquals(['NO_ROLE'], $refreshedUser->getRoles());
-    }
-
-    public function tearDown()
-    {
-        $users = $this->repo->findBy(array('username' => 'johndoe'));
-
-        foreach ($users as $user) {
-            $this->em->remove($user);
-            $this->em->flush();
-        }
     }
 }
  
