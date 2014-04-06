@@ -1,0 +1,32 @@
+{
+    "name": "frne/neo4j-user-bundle",
+    "type": "symfony-bundle",
+    "description": "Symfony Neo4jUserBundle",
+    "keywords": ["User management"],
+    "homepage": "https://github.com/frne/Neo4jUserBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Frank Neff",
+            "email": "fneff89@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.2",
+        "symfony/framework-bundle": "~2.1",
+        "symfony/form": "~2.1",
+        "symfony/security-bundle": "~2.1"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-0": { "Frne\\Bundle\\Neo4juserBundle": "" }
+    },
+    "target-dir": "Frne/Bundle/Neo4jUserBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x@dev"
+        }
+    }
+}
