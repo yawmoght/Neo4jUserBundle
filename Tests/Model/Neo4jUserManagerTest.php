@@ -58,5 +58,17 @@ class Neo4jUserManagerTest extends \PHPUnit_Framework_TestCase
             $user->getPassword()
         );
     }
+
+    public function testGenerateSalt()
+    {
+        $salt1 = $this->userManager->generateSalt();
+
+        $this->assertInternalType('string', $salt1);
+        $this->assertGreaterThanOrEqual(20, strlen($salt1), 'Salt should be at least 20 chars long!');
+
+        $salt2 = $this->userManager->generateSalt();
+
+        $this->assertNotSame($salt1, $salt2, 'Generated salts must be unique!');
+    }
 }
  

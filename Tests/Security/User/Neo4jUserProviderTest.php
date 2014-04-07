@@ -52,7 +52,7 @@ class Neo4jUserProviderTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($this->userProvider->supportsClass('Symfony\Component\Security\Core\User\User'));
     }
 
-    public function testReloadUser()
+    public function testRefreshUser()
     {
         $returnedUser = new User('johndoe', '1234', 'spdo8fgspd9f8gs', array('ROLE_USER', 'ROLE_ADMIN'));
         $this->repo
@@ -68,6 +68,14 @@ class Neo4jUserProviderTest extends \PHPUnit_Framework_TestCase
 
         $refreshedUser = $this->userProvider->refreshUser($loadedUser);
         $this->assertEquals(array('NO_ROLE'), $refreshedUser->getRoles());
+    }
+
+    public function testRefreshInvalidUserThrowsException()
+    {
+        $this->setExpectedException('Symfony\Component\Security\Core\Exception\UnsupportedUserException');
+
+        $user = $this->getMockForAbstractClass('Symfony\Component\Security\Core\User\UserInterface');
+        $this->userProvider->refreshUser($user);
     }
 }
  

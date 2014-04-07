@@ -66,9 +66,8 @@ class CreateUserCommand extends ContainerAwareCommand
             $this->em :
             $this->getContainer()->get('neo4j.manager');
 
-        $roleString = $input->getOption('roles');
-        $roles = (is_string($roleString)) ?
-            explode(',', $roleString) :
+        $roles = (is_string($roles = $input->getOption('roles'))) ?
+            explode(',', $roles) :
             array('ROLE_USER');
 
         $user = $userManager->createUser();
@@ -84,6 +83,13 @@ class CreateUserCommand extends ContainerAwareCommand
         $em->persist($user);
         $em->flush();
 
-        $output->writeln("Created user '$username' with password '$password' and roles '$roleString'");
+        $output->writeln(
+            sprintf(
+                "Created user '%s' with password '%s' and roles '%s'",
+                $username,
+                $password,
+                implode(',', $roles)
+            )
+        );
     }
 }
