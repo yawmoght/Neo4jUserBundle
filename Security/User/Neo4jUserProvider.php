@@ -73,6 +73,11 @@ class Neo4jUserProvider implements UserProviderInterface
      */
     private function dehydrate(User $user)
     {
-        return $user->getEntity();
+        return new User(
+            $user->getUsername(),
+            $user->getPassword(),
+            $user->getSalt(),
+            $user->getRoles()
+        );
     }
 }
