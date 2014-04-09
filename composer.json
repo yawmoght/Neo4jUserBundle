@@ -20,7 +20,7 @@
     },
     "require-dev": {
         "symfony/symfony": "dev-master",
-        "zendframework/zenddiagnostics": "dev-master"
+        "zendframework/zenddiagnostics": "v1.0.1"
     },
     "autoload": {
         "psr-0": { "Frne\\Bundle\\Neo4jUserBundle": "" }
