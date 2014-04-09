@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "6d3231c414a6b6c33fa3f346876e6dd3",
+    "hash": "b38bbe0df43715027b4fae1ebb4fa66b",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -831,7 +831,7 @@
         },
         {
             "name": "zendframework/zenddiagnostics",
-            "version": "dev-master",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/ZendDiagnostics.git",
@@ -890,8 +890,7 @@
         "klaussilveira/neo4j-ogm-bundle": 20,
         "hirevoice/neo4jphp-ogm": 20,
         "everyman/neo4jphp": 20,
-        "symfony/symfony": 20,
-        "zendframework/zenddiagnostics": 20
+        "symfony/symfony": 20
     },
     "platform": {
         "php": ">=5.3.2"
