@@ -11,10 +11,7 @@ filter:
 
 tools:
     php_code_coverage: true
-    php_analyzer:
-        enabled:    true
-        filter:
-            excluded_paths: ['vendor', 'Tests']
+    php_analyzer: true
     php_sim: true
     sensiolabs_security_checker: true
     php_loc:
