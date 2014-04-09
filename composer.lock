@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "679886abacf2c21241725d9d4763ce69",
+    "hash": "6d3231c414a6b6c33fa3f346876e6dd3",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -658,16 +658,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "2.3.x-dev",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "a18ee423f92cd2a5245cdcd3a145dbd6e9402613"
+                "reference": "648ce6a3d92deabd83635a647cd2006f6a8692d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/a18ee423f92cd2a5245cdcd3a145dbd6e9402613",
-                "reference": "a18ee423f92cd2a5245cdcd3a145dbd6e9402613",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/648ce6a3d92deabd83635a647cd2006f6a8692d6",
+                "reference": "648ce6a3d92deabd83635a647cd2006f6a8692d6",
                 "shasum": ""
             },
             "require": {
@@ -688,6 +688,7 @@
                 "symfony/doctrine-bridge": "self.version",
                 "symfony/dom-crawler": "self.version",
                 "symfony/event-dispatcher": "self.version",
+                "symfony/expression-language": "self.version",
                 "symfony/filesystem": "self.version",
                 "symfony/finder": "self.version",
                 "symfony/form": "self.version",
@@ -704,7 +705,11 @@
                 "symfony/proxy-manager-bridge": "self.version",
                 "symfony/routing": "self.version",
                 "symfony/security": "self.version",
+                "symfony/security-acl": "self.version",
                 "symfony/security-bundle": "self.version",
+                "symfony/security-core": "self.version",
+                "symfony/security-csrf": "self.version",
+                "symfony/security-http": "self.version",
                 "symfony/serializer": "self.version",
                 "symfony/stopwatch": "self.version",
                 "symfony/swiftmailer-bridge": "self.version",
@@ -720,15 +725,16 @@
                 "doctrine/data-fixtures": "1.0.*",
                 "doctrine/dbal": "~2.2",
                 "doctrine/orm": "~2.2,>=2.2.3",
+                "egulias/email-validator": "1.1.0",
                 "ircmaxell/password-compat": "1.0.*",
                 "monolog/monolog": "~1.3",
-                "ocramius/proxy-manager": ">=0.3.1,<0.4-dev",
+                "ocramius/proxy-manager": ">=0.3.1,<0.6-dev",
                 "propel/propel1": "1.6.*"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.3-dev"
+                    "dev-master": "2.5-dev"
                 }
             },
             "autoload": {
@@ -764,7 +770,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2014-04-03 08:18:27"
+            "time": "2014-04-09 13:36:21"
         },
         {
             "name": "twig/twig",
@@ -825,7 +831,7 @@
         },
         {
             "name": "zendframework/zenddiagnostics",
-            "version": "v1.0.1",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/ZendDiagnostics.git",
@@ -883,7 +889,9 @@
     "stability-flags": {
         "klaussilveira/neo4j-ogm-bundle": 20,
         "hirevoice/neo4jphp-ogm": 20,
-        "everyman/neo4jphp": 20
+        "everyman/neo4jphp": 20,
+        "symfony/symfony": 20,
+        "zendframework/zenddiagnostics": 20
     },
     "platform": {
         "php": ">=5.3.2"
