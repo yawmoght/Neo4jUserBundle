@@ -19,7 +19,7 @@
         "everyman/neo4jphp": "dev-master"
     },
     "require-dev": {
-        "symfony/symfony": "2.3.*",
+        "symfony/symfony": "dev-master",
         "zendframework/zenddiagnostics": "v1.0.1"
     },
     "autoload": {

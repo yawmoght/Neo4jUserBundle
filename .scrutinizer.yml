@@ -1,12 +1,19 @@
 imports:
     - php
 
+before_commands:
+    - "composer install --prefer-source"
+
+filter:
+    excluded_paths:
+        - 'vendor/*'
+        - 'Tests/*'
+
 tools:
+    php_code_coverage: true
     php_analyzer: true
     php_sim: true
-    external_code_coverage:
-        timeout: 1200 # because travis is very slow from time to time
     sensiolabs_security_checker: true
     php_loc:
         enabled: true
-        excluded_dirs: [vendor, tests]
+        excluded_dirs: ['vendor', 'Tests']
