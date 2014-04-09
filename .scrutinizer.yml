@@ -15,7 +15,6 @@ tools:
         enabled:    true
         filter:
             excluded_paths: ['vendor', 'Tests']
-    php_hhvm: true
     php_sim: true
     sensiolabs_security_checker: true
     php_loc:
