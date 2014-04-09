@@ -3,7 +3,7 @@ Neo4jUserBundle
 
 Symfony 2 bundle to manage users in a Neo4j graph database
 
-[![Build Status](https://travis-ci.org/frne/Neo4jUserBundle.svg)](https://travis-ci.org/frne/Neo4jUserBundle) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/frne/Neo4jUserBundle/badges/quality-score.png?s=be3fb1bc8ff61e2d3dccd87815720e514d2337cb)](https://scrutinizer-ci.com/g/frne/Neo4jUserBundle/) [![Code Coverage](https://scrutinizer-ci.com/g/frne/Neo4jUserBundle/badges/coverage.png?s=3b4f32e263e730299c5f30dda4bec56f24e93877)](https://scrutinizer-ci.com/g/frne/Neo4jUserBundle/) [![Latest Stable Version](https://poser.pugx.org/frne/neo4j-user-bundle/v/stable.png)](https://packagist.org/packages/frne/neo4j-user-bundle)
+[![Build Status](https://travis-ci.org/frne/Neo4jUserBundle.svg?branch=master)](https://travis-ci.org/frne/Neo4jUserBundle) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/frne/Neo4jUserBundle/badges/quality-score.png?s=59f1833cfc72c484f605f50f7965d67bbcdcc2b7)](https://scrutinizer-ci.com/g/frne/Neo4jUserBundle/) [![Code Coverage](https://scrutinizer-ci.com/g/frne/Neo4jUserBundle/badges/coverage.png?s=52c98b9d7def1b62cf71eed0defa7f9cdee12eb7)](https://scrutinizer-ci.com/g/frne/Neo4jUserBundle/) [![Latest Stable Version](https://poser.pugx.org/frne/neo4j-user-bundle/v/stable.png)](https://packagist.org/packages/frne/neo4j-user-bundle)
 
 ## Installation
 
