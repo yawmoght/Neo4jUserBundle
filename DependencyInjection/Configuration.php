@@ -4,6 +4,7 @@ namespace Frne\Bundle\Neo4jUserBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * This is the class that validates and merges configuration from your app/config files
@@ -20,9 +21,13 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('frne_neo4j_user');
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+        $rootNode
+            ->children()
+                ->scalarNode('entity_classname')
+                    ->info('A fully qualified classname to use for user entities')
+                    ->defaultValue('Frne\Bundle\Neo4jUserBundle\Entity\User')
+                ->end()
+            ->end();
 
         return $treeBuilder;
     }

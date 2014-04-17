@@ -5,6 +5,7 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
+        <parameter key="neo4j_user.entity.class">Frne\Bundle\Neo4jUserBundle\Entity\User</parameter>
         <parameter key="neo4j_user_provider.class">Frne\Bundle\Neo4jUserBundle\Security\User\Neo4jUserProvider</parameter>
         <parameter key="neo4j.user_manager.class">Frne\Bundle\Neo4jUserBundle\Model\Neo4jUserManager</parameter>
     </parameters>
@@ -13,17 +14,19 @@
 
         <service id="neo4j_user_provider" class="%neo4j_user_provider.class%">
             <argument type="service" id="neo4j.repository.user" />
+            <argument>%neo4j_user.entity.class%</argument>
         </service>
 
         <service id="neo4j.user_manager" class="%neo4j.user_manager.class%">
             <argument type="service" id="security.encoder_factory" />
+            <argument>%neo4j_user.entity.class%</argument>
         </service>
 
         <service id="neo4j.repository.user"
                  class="HireVoice\Neo4j\Repository"
                  factory-service="neo4j.manager"
                  factory-method="getRepository">
-            <argument>Frne\Bundle\Neo4jUserBundle\Entity\User</argument>
+            <argument>%neo4j_user.entity.class%</argument>
         </service>
 
 
