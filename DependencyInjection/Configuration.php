@@ -19,13 +19,17 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('frne_neo4j_user');
+        $rootNode = $treeBuilder->root('neo4j_user');
 
         $rootNode
             ->children()
                 ->scalarNode('entity_classname')
                     ->info('A fully qualified classname to use for user entities')
                     ->defaultValue('Frne\Bundle\Neo4jUserBundle\Entity\User')
+                ->end()
+                ->scalarNode('entity_dehydrator')
+                    ->info('A fully qualified classname to use for dehydrating users')
+                    ->defaultValue('Frne\Bundle\Neo4jUserBundle\Security\User\Neo4jUserDehydrator')
                 ->end()
             ->end();
 

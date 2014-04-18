@@ -17,17 +17,24 @@ class Neo4jUserProvider implements UserProviderInterface
     private $repo;
 
     /**
+     * @var Dehydrator
+     */
+    private $dehydrator;
+
+    /**
      * @var string
      */
     private $userEntityClass;
 
     /**
      * @param Repository $repo
+     * @param Dehydrator $dehydrator
      * @param string $userEntityClass
      */
-    function __construct(Repository $repo, $userEntityClass)
+    function __construct(Repository $repo, Dehydrator $dehydrator, $userEntityClass)
     {
         $this->repo = $repo;
+        $this->dehydrator = $dehydrator;
         $this->userEntityClass = $userEntityClass;
     }
 
@@ -40,7 +47,7 @@ class Neo4jUserProvider implements UserProviderInterface
     {
         $user = $this->repo->findOneBy(array('username' => $username));
 
-        if (!$user instanceof User) {
+        if (!$user instanceof $this->userEntityClass) {
             throw new UsernameNotFoundException(
                 sprintf('Username "%s" does not exist.', $username)
             );
@@ -56,7 +63,7 @@ class Neo4jUserProvider implements UserProviderInterface
      */
     public function refreshUser(UserInterface $user)
     {
-        if (!$user instanceof User) {
+        if (!$user instanceof $this->userEntityClass) {
             throw new UnsupportedUserException(
                 sprintf('Instances of "%s" are not supported.', get_class($user))
             );
@@ -75,16 +82,11 @@ class Neo4jUserProvider implements UserProviderInterface
     }
 
     /**
-     * @param User $user
-     * @return User
+     * @param UserInterface $user
+     * @return UserInterface
      */
-    private function dehydrate(User $user)
+    private function dehydrate(UserInterface $user)
     {
-        return new $this->userEntityClass(
-            $user->getUsername(),
-            $user->getPassword(),
-            $user->getSalt(),
-            $user->getRoles()
-        );
+        return $this->dehydrator->dehydrate($user, $this->userEntityClass);
     }
 }

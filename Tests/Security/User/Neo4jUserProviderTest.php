@@ -24,7 +24,9 @@ class Neo4jUserProviderTest extends \PHPUnit_Framework_TestCase
             ->disableArgumentCloning()
             ->getMock();
 
-        $this->userProvider = new Neo4jUserProvider($this->repo, 'Frne\Bundle\Neo4jUserBundle\Entity\User');
+        $dehydrator = new Neo4jUserDehydrator();
+
+        $this->userProvider = new Neo4jUserProvider($this->repo, $dehydrator, 'Frne\Bundle\Neo4jUserBundle\Entity\User');
     }
 
     public function testLoadUserByUsername()
