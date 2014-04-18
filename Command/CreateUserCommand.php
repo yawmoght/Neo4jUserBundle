@@ -40,6 +40,7 @@ class CreateUserCommand extends ContainerAwareCommand
             ->setDescription('Create a user')
             ->addOption('username', 'u', InputOption::VALUE_REQUIRED, 'The username to be set')
             ->addOption('password', 'p', InputOption::VALUE_REQUIRED, 'The password of the user')
+            ->addOption('email', null, InputOption::VALUE_REQUIRED, 'The e-mail address of the user')
             ->addOption(
                 'roles',
                 'r',
@@ -77,6 +78,10 @@ class CreateUserCommand extends ContainerAwareCommand
             ->setPlainPassword($password = $input->getOption('password'))
             ->setSalt($userManager->generateSalt())
             ->setRoles($roles);
+
+        if (is_string($email = $input->getOption('email'))) {
+            $user->setEmail($email);
+        }
 
         $userManager->updatePassword($user);
 

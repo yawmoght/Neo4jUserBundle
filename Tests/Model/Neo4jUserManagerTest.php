@@ -27,7 +27,8 @@ class Neo4jUserManagerTest extends \PHPUnit_Framework_TestCase
             ->getMock();
 
         $this->userManager = new Neo4jUserManager(
-            $this->encoderFactory
+            $this->encoderFactory,
+            'Frne\Bundle\Neo4jUserBundle\Entity\User'
         );
     }
 

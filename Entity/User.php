@@ -26,6 +26,13 @@ class User implements UserInterface, EquatableInterface
 
     /**
      * @var string
+     * @OGM\Property
+     * @OGM\Index
+     */
+    protected $email;
+
+    /**
+     * @var string
      */
     protected $plainPassword;
 
@@ -94,6 +101,22 @@ class User implements UserInterface, EquatableInterface
         $this->username = $username;
 
         return $this;
+    }
+
+    /**
+     * @param string $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
     }
 
     /**

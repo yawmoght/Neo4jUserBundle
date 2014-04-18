@@ -24,5 +24,10 @@ class FrneNeo4jUserExtension extends Extension
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
+
+        if(array_key_exists('entity_classname', $config)) {
+            $container->setParameter('neo4j_user.entity.class', $config['entity_classname']);
+        }
+
     }
 }

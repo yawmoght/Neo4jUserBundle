@@ -17,11 +17,18 @@ class Neo4jUserProvider implements UserProviderInterface
     private $repo;
 
     /**
-     * @param Repository $repo
+     * @var string
      */
-    function __construct(Repository $repo)
+    private $userEntityClass;
+
+    /**
+     * @param Repository $repo
+     * @param string $userEntityClass
+     */
+    function __construct(Repository $repo, $userEntityClass)
     {
         $this->repo = $repo;
+        $this->userEntityClass = $userEntityClass;
     }
 
     /**
@@ -64,7 +71,7 @@ class Neo4jUserProvider implements UserProviderInterface
      */
     public function supportsClass($class)
     {
-        return $class === 'Frne\Bundle\Neo4jUserBundle\Entity\User';
+        return $class === $this->userEntityClass;
     }
 
     /**
@@ -73,7 +80,7 @@ class Neo4jUserProvider implements UserProviderInterface
      */
     private function dehydrate(User $user)
     {
-        return new User(
+        return new $this->userEntityClass(
             $user->getUsername(),
             $user->getPassword(),
             $user->getSalt(),

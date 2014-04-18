@@ -15,11 +15,18 @@ class Neo4jUserManager extends Repository implements UserManager
     private $encoderFactory;
 
     /**
-     * @param EncoderFactoryInterface $encoderFactory
+     * @var string
      */
-    function __construct(EncoderFactoryInterface $encoderFactory)
+    private $userEntityClass;
+
+    /**
+     * @param EncoderFactoryInterface $encoderFactory
+     * @param \HireVoice\Neo4j\Meta\Entity $userEntityClass
+     */
+    function __construct(EncoderFactoryInterface $encoderFactory, $userEntityClass)
     {
         $this->encoderFactory = $encoderFactory;
+        $this->userEntityClass = $userEntityClass;
     }
 
     /**
@@ -29,7 +36,7 @@ class Neo4jUserManager extends Repository implements UserManager
      */
     public function createUser()
     {
-        return new User();
+        return new $this->userEntityClass;
     }
 
     /**

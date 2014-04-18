@@ -3,13 +3,14 @@
 namespace Frne\Bundle\Neo4jUserBundle\Model;
 
 use Symfony\Component\Security\Core\User\UserInterface;
+use Frne\Bundle\Neo4jUserBundle\Entity\User;
 
 interface UserManager
 {
     /**
      * Creates an empty user
      *
-     * @return UserInterface
+     * @return UserInterface|User
      */
     function createUser();
 
