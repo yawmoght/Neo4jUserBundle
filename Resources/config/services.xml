@@ -8,16 +8,23 @@
         <parameter key="neo4j_user.entity.class">Frne\Bundle\Neo4jUserBundle\Entity\User</parameter>
         <parameter key="neo4j_user_provider.class">Frne\Bundle\Neo4jUserBundle\Security\User\Neo4jUserProvider</parameter>
         <parameter key="neo4j.user_manager.class">Frne\Bundle\Neo4jUserBundle\Model\Neo4jUserManager</parameter>
+        <parameter key="neo4j.user_dehydrator.class">Frne\Bundle\Neo4jUserBundle\Security\User\Neo4jUserDehydrator</parameter>
     </parameters>
 
     <services>
 
         <service id="neo4j_user_provider" class="%neo4j_user_provider.class%">
             <argument type="service" id="neo4j.repository.user" />
+            <argument type="service" id="neo4j.user_dehydrator" />
             <argument>%neo4j_user.entity.class%</argument>
         </service>
 
         <service id="neo4j.user_manager" class="%neo4j.user_manager.class%">
+            <argument type="service" id="security.encoder_factory" />
+            <argument>%neo4j_user.entity.class%</argument>
+        </service>
+
+        <service id="neo4j.user_dehydrator" class="%neo4j.user_dehydrator.class%">
             <argument type="service" id="security.encoder_factory" />
             <argument>%neo4j_user.entity.class%</argument>
         </service>

@@ -2,8 +2,10 @@
 
 namespace Frne\Bundle\Neo4jUserBundle\DependencyInjection;
 
+use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\Exception\BadMethodCallException;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
@@ -12,7 +14,7 @@ use Symfony\Component\DependencyInjection\Loader;
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class FrneNeo4jUserExtension extends Extension
+class Neo4jUserExtension extends Extension
 {
     /**
      * {@inheritDoc}
@@ -29,5 +31,8 @@ class FrneNeo4jUserExtension extends Extension
             $container->setParameter('neo4j_user.entity.class', $config['entity_classname']);
         }
 
+        if(array_key_exists('entity_dehydrator', $config)) {
+            $container->setParameter('neo4j.user_dehydrator.class', $config['entity_dehydrator']);
+        }
     }
 }

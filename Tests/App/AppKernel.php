@@ -14,7 +14,7 @@ class AppKernel extends Kernel
             new \Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new \Symfony\Bundle\TwigBundle\TwigBundle(),
 
-            new \Frne\Bundle\Neo4jUserBundle\FrneNeo4jUserBundle(),
+            new \Frne\Bundle\Neo4jUserBundle\Neo4jUserBundle(),
         );
 
         return $bundles;
