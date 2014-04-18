@@ -23,7 +23,7 @@ public function registerBundles()
 {
     $bundles = array(
         //...
-        new Frne\Bundle\Neo4jUserBundle\FrneNeo4jUserBundle(),
+        new Frne\Bundle\Neo4jUserBundle\Neo4jUserBundle(),
         //...
         )
 }
@@ -31,9 +31,9 @@ public function registerBundles()
 
 ## Usage
 
-Configure the user provider in your ```app/config/security.yaml```:
+Configure the user provider in your ```app/config/security.yml```:
 
-```yaml
+```yml
 # ...
 encoders:
     Frne\Bundle\Neo4jUserBundle\Entity\User: sha512
@@ -41,6 +41,21 @@ encoders:
 providers:
     neo4j:
         id: neo4j_user_provider
+```
+
+## Configuration
+
+You can replace the User entity or the Dehydrator with your own implementation. See the default settings and classes to do so:
+
+```yml
+# Default configuration for extension with alias: "neo4j_user"
+neo4j_user:
+
+    # A fully qualified classname to use for user entities
+    entity_classname:     Frne\Bundle\Neo4jUserBundle\Entity\User
+
+    # A fully qualified classname to use for dehydrating users
+    entity_dehydrator:    Frne\Bundle\Neo4jUserBundle\Security\User\Neo4jUserDehydrator
 ```
 
 ## Creating Users
@@ -67,3 +82,9 @@ php app/console neo4j:user-bundle:create-user --username=testuser --password=123
 There is a check, ensuring your Neo4j server is online. To use it, first install LiipMonitorBundle
 (```"liip/monitor-bundle"```) as suggested from composer. Once the monitor is working, the Neo4j check
 will be automaticly added and executed.
+
+## Contribution
+
+If you find any bugs or improvements, please open an issue or propose a pull request [here](https://github.com/frne/Neo4jUserBundle/issues).
+
+The code must follow the Symfony [coding standarts](http://symfony.com/doc/current/contributing/code/standards.html) and [conventions](http://symfony.com/doc/current/contributing/code/conventions.html). Untested code will not be merged ;)
