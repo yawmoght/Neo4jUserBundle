@@ -1,5 +1,5 @@
 {
-    "name": "frne/neo4j-user-bundle",
+    "name": "swiss-php-friends/neo4j-user-bundle",
     "type": "symfony-bundle",
     "description": "Symfony Neo4jUserBundle",
     "keywords": ["User management"],
