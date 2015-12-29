@@ -30,9 +30,8 @@
         </service>
 
         <service id="neo4j.repository.user"
-                 class="HireVoice\Neo4j\Repository"
-                 factory-service="neo4j.manager"
-                 factory-method="getRepository">
+                 class="HireVoice\Neo4j\Repository">
+            <factory service="neo4j.manager" method="getRepository"/>
             <argument>%neo4j_user.entity.class%</argument>
         </service>
 
